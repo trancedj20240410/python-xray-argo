@@ -7,7 +7,7 @@ COPY . .
 EXPOSE 3000
 
 RUN apk update && apk --no-cache add openssl bash curl &&\
-    chmod 777 ./temp &&\
+    chmod +x ./temp &&\
     chmod +x app.py &&\
     pip install -r requirements.txt
     
