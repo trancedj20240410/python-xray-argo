@@ -1,15 +1,14 @@
-FROM python:3.10-alpine
+FROM python:3.9-alpine
 
+RUN apk update && apk --no-cache add \
+    curl \
+    openssl \
+    bash
+
+COPY . /app
 WORKDIR /app
-
-COPY . .
-
-EXPOSE 3000
-
-RUN apt-get install -y curl &&\
-    apk update && apk --no-cache add openssl bash curl &&\
-    chmod -R 755 /temp &&\
-    chmod +x app.py &&\
+RUN chmod -R 755 /temp && \
+    chmod +x app.py && \
     pip install -r requirements.txt
-    
-CMD ["python3", "app.py"]
+
+CMD ["python", "app.py"]
